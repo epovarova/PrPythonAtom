@@ -15,10 +15,11 @@ class FileWriter:
         return self
     def __exit__(self, type, value, traceback):
          self.file.close()
-
-    def get_path(self):
-        return self.path
-    def set_path(self, new_path):
+    @property
+    def path(self):
+        return self.path_
+    @path.setter
+    def path(self, new_path):
         if self._check_path(os.path.split(new_path)[0]):
             self.path = new_path
         else:
